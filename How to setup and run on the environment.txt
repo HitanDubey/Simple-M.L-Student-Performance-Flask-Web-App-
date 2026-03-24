@@ -1,0 +1,357 @@
+================================================================================
+                    STUDENT PERFORMANCE PREDICTOR
+                    Setup and Installation Guide
+================================================================================
+
+This document provides step-by-step instructions to set up and run the Student 
+Performance Predictor application on your local machine.
+
+================================================================================
+                            SYSTEM REQUIREMENTS
+================================================================================
+
+- Operating System: Windows 10/11, macOS, or Linux (Ubuntu 20.04+)
+- Python Version: 3.8 or higher (Python 3.9 or 3.10 recommended)
+- RAM: Minimum 4GB (8GB recommended)
+- Disk Space: 500MB free space
+- Internet Connection: Required for downloading dependencies
+
+================================================================================
+                        STEP 1: INSTALL PYTHON
+================================================================================
+
+If you don't have Python installed:
+
+Windows:
+--------
+1. Visit https://www.python.org/downloads/
+2. Download Python 3.9 or 3.10
+3. Run the installer
+4. IMPORTANT: Check "Add Python to PATH" at the bottom
+5. Click "Install Now"
+6. Verify installation: Open Command Prompt and type:
+   python --version
+
+macOS:
+------
+1. Open Terminal
+2. Install Homebrew if not installed:
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+3. Install Python:
+   brew install python@3.10
+4. Verify installation:
+   python3 --version
+
+Linux (Ubuntu/Debian):
+---------------------
+1. Open Terminal
+2. Update package list:
+   sudo apt update
+3. Install Python:
+   sudo apt install python3.10 python3-pip
+4. Verify installation:
+   python3 --version
+
+================================================================================
+                    STEP 2: DOWNLOAD THE PROJECT
+================================================================================
+
+Option A: Using Git (Recommended)
+----------------------------------
+1. Install Git from https://git-scm.com/downloads
+2. Open Terminal/Command Prompt
+3. Navigate to where you want the project:
+   cd Desktop
+4. Clone the repository:
+   git clone https://github.com/yourusername/student-performance-predictor.git
+5. Navigate into the project folder:
+   cd student-performance-predictor
+
+Option B: Download ZIP
+----------------------
+1. Go to the GitHub repository
+2. Click the green "Code" button
+3. Select "Download ZIP"
+4. Extract the ZIP file to your desired location
+5. Open Terminal/Command Prompt and navigate to the extracted folder:
+   cd path/to/student-performance-predictor
+
+================================================================================
+                    STEP 3: SET UP VIRTUAL ENVIRONMENT
+================================================================================
+
+Creating a virtual environment is optional but HIGHLY RECOMMENDED to avoid
+conflicts with other Python projects.
+
+Windows:
+--------
+1. Create virtual environment:
+   python -m venv venv
+2. Activate it:
+   venv\Scripts\activate
+3. You should see (venv) appear at the beginning of the command line
+
+macOS/Linux:
+------------
+1. Create virtual environment:
+   python3 -m venv venv
+2. Activate it:
+   source venv/bin/activate
+3. You should see (venv) appear at the beginning of the command line
+
+================================================================================
+                    STEP 4: INSTALL DEPENDENCIES
+================================================================================
+
+With the virtual environment activated, install all required packages:
+
+1. Ensure you're in the project directory (where requirements.txt is located)
+2. Install dependencies:
+   
+   Windows:
+   pip install -r requirements.txt
+   
+   macOS/Linux:
+   pip3 install -r requirements.txt
+
+3. Wait for all packages to install (this may take 1-2 minutes)
+
+If requirements.txt doesn't exist, create it with these contents:
+
+
+flask==2.3.3
+numpy==1.24.3
+scikit-learn==1.3.2
+pandas==2.0.3
+joblib==1.3.2
+
+
+
+
+Or install individually:
+   pip install flask numpy scikit-learn pandas joblib
+
+================================================================================
+                    STEP 5: VERIFY INSTALLATION
+================================================================================
+
+Run this quick test to verify everything is installed correctly:
+
+1. Open Python interactive shell:
+   python
+   
+2. Try importing the packages:
+   >>> import flask
+   >>> import numpy
+   >>> import sklearn
+   >>> import pandas
+   >>> import joblib
+   
+3. If no errors appear, all packages are installed correctly
+4. Exit Python:
+   >>> exit()
+
+================================================================================
+                    STEP 6: RUN THE APPLICATION
+================================================================================
+
+1. Ensure you're in the project directory with all files:
+   - app.py
+   - model_pickle.pkl
+   - StudentPerformance.csv
+   - templates/index.html
+   - static/style.css
+
+2. Start the Flask application:
+   
+   Windows:
+   python app.py
+   
+   macOS/Linux:
+   python3 app.py
+
+3. You should see output similar to:
+   ============================================================
+   STUDENT PERFORMANCE PREDICTOR
+   ============================================================
+   Python version: 3.9.x
+   NumPy version: 1.24.x
+   Current directory: /path/to/project
+   ============================================================
+   ✅ Found model file: model_pickle.pkl (XXXX bytes)
+   📦 Loading with pickle...
+   ✅ SUCCESS with pickle!
+   ✅ Model loaded successfully!
+   Model type: LinearRegression
+   
+   Starting Flask server...
+   Access the app at: http://127.0.0.1:5000
+   ============================================================
+
+4. Open your web browser and go to:
+   http://127.0.0.1:5000
+
+5. The application should now be running!
+
+================================================================================
+                    STEP 7: USING THE APPLICATION
+================================================================================
+
+1. Enter the following details:
+   - Hours Studied (1-12 hours/day)
+   - Previous Scores (0-100%)
+   - Extracurricular Activities (Yes/No)
+   - Sleep Hours (4-12 hours/day)
+   - Sample Question Papers Practiced (0-20 papers)
+
+2. Click "Predict Performance"
+
+3. View the results:
+   - Predicted Performance Index (0-100)
+   - Performance Category (Excellent/Good/Average/Needs Improvement)
+   - Personalized recommendations
+   - Feature contribution analysis
+
+Sample Test Values:
+-------------------
+Try these values to test the application:
+
+Example 1 (Excellent Student):
+- Hours Studied: 8
+- Previous Scores: 95
+- Extracurricular: Yes
+- Sleep Hours: 8
+- Papers Practiced: 10
+Expected: ~85-95 (Excellent)
+
+Example 2 (Average Student):
+- Hours Studied: 5
+- Previous Scores: 70
+- Extracurricular: No
+- Sleep Hours: 6
+- Papers Practiced: 5
+Expected: ~60-70 (Good to Average)
+
+Example 3 (Needs Improvement):
+- Hours Studied: 2
+- Previous Scores: 45
+- Extracurricular: No
+- Sleep Hours: 4
+- Papers Practiced: 1
+Expected: ~20-40 (Needs Improvement)
+
+================================================================================
+                    TROUBLESHOOTING
+================================================================================
+
+Common Issues and Solutions:
+
+Issue 1: "Python is not recognized as an internal or external command"
+Solution: Python is not installed or not in PATH
+- Reinstall Python and check "Add Python to PATH"
+- Or use 'py' instead of 'python' on Windows
+
+Issue 2: "ModuleNotFoundError: No module named 'flask'"
+Solution: Dependencies not installed
+- Run: pip install -r requirements.txt
+- Ensure virtual environment is activated
+
+Issue 3: "Model file not found" error
+Solution: Model file missing
+- Ensure model_pickle.pkl is in the project directory
+- If missing, run: python retrain_model.py
+
+Issue 4: Port 5000 already in use
+Solution: Another application using port 5000
+- Change port in app.py: change port=5000 to port=5001
+- Or kill the process using port 5000
+
+Windows (find and kill process):
+   netstat -ano | findstr :5000
+   taskkill /PID <PID> /F
+
+macOS/Linux:
+   lsof -i :5000
+   kill -9 <PID>
+
+Issue 5: Template not found error
+Solution: Missing templates folder
+- Ensure templates/index.html exists
+- Folder structure should be: project/templates/index.html
+
+Issue 6: "Address already in use" error
+Solution: Server already running
+- Close other terminal windows
+- Restart your computer
+
+Issue 7: Model loading fails
+Solution: Model file corrupted or incompatible
+- Retrain the model: python retrain_model.py
+
+Issue 8: "ImportError: cannot import name 'joblib'"
+Solution: joblib not installed
+- pip install joblib
+
+================================================================================
+                    STOPPING THE APPLICATION
+================================================================================
+
+To stop the Flask server:
+
+1. Go to the terminal/command prompt where the app is running
+2. Press:
+   Ctrl + C
+3. Confirm: Type 'y' or just press Enter
+
+================================================================================
+                    DEACTIVATE VIRTUAL ENVIRONMENT
+================================================================================
+
+When you're done using the application:
+
+1. Deactivate the virtual environment:
+   deactivate
+
+2. Close the terminal/command prompt
+
+================================================================================
+                    NEXT STEPS & ADDITIONAL RESOURCES
+================================================================================
+
+Want to contribute or modify the application?
+
+1. Modify the model:
+   - Edit retrain_model.py to change model parameters
+   - Add new features to improve accuracy
+
+2. Customize the UI:
+   - Edit templates/index.html for structure
+   - Edit static/style.css for styling
+
+3. Deploy online:
+   - Render.com (free tier)
+   - PythonAnywhere (free tier)
+   - Heroku (paid after free credits)
+
+4. Learn more:
+   - Flask Documentation: https://flask.palletsprojects.com/
+   - Scikit-learn Documentation: https://scikit-learn.org/
+   - Linear Regression Guide: https://scikit-learn.org/stable/modules/linear_model.html
+
+================================================================================
+                    CONTACT & SUPPORT
+================================================================================
+
+If you encounter any issues not covered in this guide:
+
+- Check the GitHub repository issues page
+- Open a new issue with details about your problem
+- Include error messages and your system information
+
+================================================================================
+                            END OF GUIDE
+================================================================================
+
+Thank you for using the Student Performance Predictor!
+
+Happy Predicting! 🎓📊
